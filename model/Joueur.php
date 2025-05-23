@@ -159,4 +159,13 @@ class Joueur
         $this->forceDuBien = $forceDuBien;
         return $this;
     }
+
+    public function __toString(): string
+    {
+        $message = "";
+        $genre = $this->getSexe() === "M" ? "un" : "une";
+        $forceDuBien = $this->getForceDuBien() ? "des forces du bien" : "des forces du mal";
+        $pv = $this->getPv() > 1 ? "points" : "point";
+        return "► {$this->getNom()} est {$genre} {$this->getClasse()} avec une attaque de {$this->getAttaque()} et {$this->getPv()} $pv de vie {$forceDuBien}\n";
+    }
 }
