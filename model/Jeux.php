@@ -6,20 +6,56 @@ class Jeux
     private String $nom;
     private array $personnages;
 
-    public function __construct(string $nom)
+    public function __construct(String $nom = '', array $personnages = [])
     {
         $this->nom = $nom;
+        $this->personnages = $personnages;
+        // $this->create();
     }
 
-    public function ajouterPersonnage(object $personnage): void
+    /**
+     * Get the value of nom
+     *
+     * @return String
+     */
+    public function getNom(): String
     {
-        $this->personnages[] = $personnage;
+        return $this->nom;
     }
 
-    public function getAllPersonnage()
+    /**
+     * Set the value of nom
+     *
+     * @param String $nom
+     *
+     * @return self
+     */
+    public function setNom(String $nom): self
     {
-        foreach ($this->personnages as $personnage) {
-            echo $personnage;
-        }
+        $this->nom = $nom;
+        return $this;
+    }
+
+    /**
+     * Get the value of personnages
+     *
+     * @return array
+     */
+    public function getPersonnages(): array
+    {
+        return $this->personnages;
+    }
+
+    /**
+     * Set the value of personnages
+     *
+     * @param array $personnages
+     *
+     * @return self
+     */
+    public function setPersonnages(array $personnages): self
+    {
+        $this->personnages = $personnages;
+        return $this;
     }
 }

@@ -1,15 +1,40 @@
 <?php
 
 declare(strict_types=1);
-require('./model/Joueur.php');
-// require('./model/Voiture.php');
-require('./model/Jeux.php');
 
-$monJeu = new Jeux("battlefield");
+require('./controller/JeuxController.php');
+require('./controller/JoueurController.php');
+// $jeuxController->getAllPersonnage();
 
-// $toto = new Joueur("toto", "M", "mage", 13, 80, false);
-// $tata = new Joueur("tata", "F", "druide", 15, 70, true);
 
-// $monJeu->ajouterPersonnage($toto);
-// $monJeu->ajouterPersonnage($tata);
-$monJeu->getAllPersonnage();
+$menu = "1. Créer un jeu
+2. Créer un personnage
+10. Sortir\n";
+
+echo "$menu";
+
+$choixMenu = (int) readline("Choisir un menu : ");
+
+
+while ($choixMenu != 10) {
+    switch ($choixMenu) {
+        case 1:
+            $jeuxController = new JeuxController();
+            $jeuxController->getAllPersonnage();
+
+            echo "$menu";
+            $choixMenu = (int) readline("Choisir un menu : ");
+
+            break;
+        case 2:
+            $JoueurController = new JoueurController();
+            $tabPersonnages = $JoueurController->create();
+            $jeuxController = $setPersonnages($tabPersonnages);
+            $jeuxController = $getAllPersonnages();
+            break;
+        default:
+            # code...
+            break;
+    }
+}
+echo "bye bye";

@@ -9,18 +9,49 @@ class Joueur
     private String $sexe;
     private int $attaque;
     private int $pv;
-    private bool $forceDuBien;
+    private string $forceDuBien;
 
 
-    public function __construct(String $nom, String $sexe, String $classe, int $attaque, int $pv, bool $forceDuBien)
+    public function __construct(String $nom, String $sexe, String $classe, int $attaque, int $PV, string $force)
     {
+        // this instancie la propriété de l'objet créé
         $this->nom = $nom;
+        $this->sexe = $sexe;
         $this->classe = $classe;
         $this->attaque = $attaque;
-        $this->pv = $pv;
-        $this->forceDuBien = $forceDuBien;
-        $this->sexe = $sexe;
+        $this->pv = $PV;
+        $this->forceDuBien = $force;
+        // $this->create();
     }
+
+    /**
+     * création d'un joueur
+     *
+     * @return Joueur
+     */
+    public function createJoueur(): Joueur
+    {
+        $nom = readline("Veuillez entrer le nom : ");
+        $classe = readline("Veuillez entrer la classe : ");
+        $sexe = readline("Veuillez entrer le sexe (M/F) : ");
+        $attaque = (int)readline("Veuillez entrer les points d'attaque : ");
+        $pv = (int)readline("Veuillez entrer les points de vie : ");
+        $forceDuBien = strtolower(readline("Est-ce un personnage du bien ? (oui/non) : ")) === "oui";
+        if ($forceDuBien) {
+            $force = "bien";
+        } else {
+            $force = "mal";
+        }
+        $this->setNom($nom);
+        $this->setClasse($classe);
+        $this->setSexe($sexe);
+        $this->setAttaque($attaque);
+        $this->setPv($pv);
+        $this->setForceDuBien("force du " . $force);
+
+        return $this;
+    }
+
 
     /**
      * Get the value of nom
@@ -140,9 +171,9 @@ class Joueur
     /**
      * Get the value of forceDuBien
      *
-     * @return bool
+     * @return string
      */
-    public function getForceDuBien(): bool
+    public function getForceDuBien(): string
     {
         return $this->forceDuBien;
     }
@@ -150,11 +181,11 @@ class Joueur
     /**
      * Set the value of forceDuBien
      *
-     * @param bool $forceDuBien
+     * @param string $forceDuBien
      *
      * @return self
      */
-    public function setForceDuBien(bool $forceDuBien): self
+    public function setForceDuBien(string $forceDuBien): self
     {
         $this->forceDuBien = $forceDuBien;
         return $this;
