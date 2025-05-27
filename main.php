@@ -37,8 +37,9 @@ while ($choixMenu != 10) {
             }
             $jeuxController->getAllPersonnage();
             break;
-        default:
-            # code...
+        case 3:
+            $combatController = new combatController($jeuxController->getJeux());
+            $combatController->combat();
             break;
     }
     echo "$menu";
