@@ -9,10 +9,10 @@ class Joueur
     private String $sexe;
     private int $attaque;
     private int $pv;
-    private string $forceDuBien;
+    private bool $forceDuBien;
 
 
-    public function __construct(String $nom, String $sexe, String $classe, int $attaque, int $PV, string $force)
+    public function __construct(String $nom = '', String $sexe = '', String $classe = '', int $attaque = 0, int $PV = 0, bool $force = true)
     {
         // this instancie la propriété de l'objet créé
         $this->nom = $nom;
@@ -23,35 +23,6 @@ class Joueur
         $this->forceDuBien = $force;
         // $this->create();
     }
-
-    /**
-     * création d'un joueur
-     *
-     * @return Joueur
-     */
-    public function createJoueur(): Joueur
-    {
-        $nom = readline("Veuillez entrer le nom : ");
-        $classe = readline("Veuillez entrer la classe : ");
-        $sexe = readline("Veuillez entrer le sexe (M/F) : ");
-        $attaque = (int)readline("Veuillez entrer les points d'attaque : ");
-        $pv = (int)readline("Veuillez entrer les points de vie : ");
-        $forceDuBien = strtolower(readline("Est-ce un personnage du bien ? (oui/non) : ")) === "oui";
-        if ($forceDuBien) {
-            $force = "bien";
-        } else {
-            $force = "mal";
-        }
-        $this->setNom($nom);
-        $this->setClasse($classe);
-        $this->setSexe($sexe);
-        $this->setAttaque($attaque);
-        $this->setPv($pv);
-        $this->setForceDuBien("force du " . $force);
-
-        return $this;
-    }
-
 
     /**
      * Get the value of nom
@@ -173,7 +144,7 @@ class Joueur
      *
      * @return string
      */
-    public function getForceDuBien(): string
+    public function getForceDuBien(): bool
     {
         return $this->forceDuBien;
     }
@@ -181,11 +152,11 @@ class Joueur
     /**
      * Set the value of forceDuBien
      *
-     * @param string $forceDuBien
+     * @param bool $forceDuBien
      *
      * @return self
      */
-    public function setForceDuBien(string $forceDuBien): self
+    public function setForceDuBien(bool $forceDuBien): self
     {
         $this->forceDuBien = $forceDuBien;
         return $this;
@@ -194,7 +165,7 @@ class Joueur
     public function __toString(): string
     {
         $message = "";
-        $genre = $this->getSexe() === "M" ? "un" : "une";
+        $genre = $this->getSexe() === "m" ? "un" : "une";
         $forceDuBien = $this->getForceDuBien() ? "des forces du bien" : "des forces du mal";
         $pv = $this->getPv() > 1 ? "points" : "point";
         return "► {$this->getNom()} est {$genre} {$this->getClasse()} avec une attaque de {$this->getAttaque()} et {$this->getPv()} $pv de vie {$forceDuBien}\n";

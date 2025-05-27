@@ -5,11 +5,13 @@ class Jeux
 {
     private String $nom;
     private array $personnages;
+    private bool $isCreated;
 
-    public function __construct(String $nom = '', array $personnages = [])
+    public function __construct(String $nom = '', array $personnages = [], $isCreated = false)
     {
         $this->nom = $nom;
         $this->personnages = $personnages;
+        $this->isCreated = $isCreated;
         // $this->create();
     }
 
@@ -56,6 +58,29 @@ class Jeux
     public function setPersonnages(array $personnages): self
     {
         $this->personnages = $personnages;
+        return $this;
+    }
+
+    /**
+     * Get the value of isCreated
+     *
+     * @return bool
+     */
+    public function getIsCreated(): bool
+    {
+        return $this->isCreated;
+    }
+
+    /**
+     * Set the value of isCreated
+     *
+     * @param bool $isCreated
+     *
+     * @return self
+     */
+    public function setIsCreated(bool $isCreated): self
+    {
+        $this->isCreated = $isCreated;
         return $this;
     }
 }
